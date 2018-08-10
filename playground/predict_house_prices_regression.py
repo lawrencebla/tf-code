@@ -1,13 +1,22 @@
+from __future__ import print_function
+import shutil
 import tensorflow as tf
 from tensorflow import keras
 
 import numpy as np
+
+import matplotlib as mpl
+mpl.use('Agg')
 
 import pandas as pd
 
 import matplotlib.pyplot as plt
 
 boston_housing = keras.datasets.boston_housing
+
+cache_path = '/root/.keras/datasets'
+if os.path.exists(cache_path) == False:
+  shutil.copytree('./datasets', cache_path )
 
 (train_data, train_labels), (test_data, test_labels) = boston_housing.load_data()
 
@@ -47,9 +56,9 @@ model = build_model()
 model.summary()
 
 class PrintDot(keras.callbacks.Callback):
-    def on_epoch_end(self, epoch, logs):
-        if epoch % 100 == 0: print('')
-        print('.', end='')
+  def on_epoch_end(self,epoch,logs):
+    if epoch % 100 == 0: print('')
+    print('.', end='')
 
 EPOCHS = 500
 
