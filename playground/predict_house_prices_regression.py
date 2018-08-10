@@ -1,4 +1,5 @@
 from __future__ import print_function
+import os
 import shutil
 import tensorflow as tf
 from tensorflow import keras
@@ -78,6 +79,7 @@ def plot_history(history):
     plt.ylim([0, 5])
 
 plot_history(history)
+plt.savefig('img1.png')
 
 model = build_model()
 
@@ -88,6 +90,7 @@ history = model.fit(train_data, train_labels, epochs=EPOCHS,
     callbacks=[early_stop, PrintDot()])
 
 plot_history(history)
+plt.savefig('img2.png')
 
 [loss, mae] = model.evaluate(test_data, test_labels, verbose=0)
 
