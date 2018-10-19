@@ -9,6 +9,10 @@ mpl.use('Agg')
 
 import matplotlib.pyplot as plt
 
+cache_path = '/root/.keras/datasets'
+if os.path.exists(cache_path) == False:
+  shutil.copytree('./datasets', cache_path )
+  
 (x_train, y_train),(x_test, y_test) = keras.datasets.mnist.load_data()
 x_train, x_test = x_train / 255.0, x_test / 255.0
 
